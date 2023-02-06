@@ -29,8 +29,28 @@ export function buildLoaders(options: BuildOptions): webpack.RuleSetRule[] {
         ],
     }
 
+    const imgLoader = {
+        test: /\.(png|jpg|gif)$/i,
+        use: [
+            {
+                loader: 'url-loader',
+                options: {
+                    limit: 8192,
+                }
+            },
+        ],
+        type: 'javascript/auto'
+    }
+
+    const svgLoader = {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+    }
+
     return [
         typescriptLoader,
         styleLoader,
+        svgLoader,
+        imgLoader,
     ]
 }
