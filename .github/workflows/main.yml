@@ -27,3 +27,4 @@ jobs:
         run: npm run lint:scss
       - name: Unit testing
         run: npm run test:unit
+      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
