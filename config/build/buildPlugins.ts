@@ -9,7 +9,6 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
         new HtmlWebpackPlugin({
             template: paths.html,
         }),
-        new webpack.ProgressPlugin(),
         new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash:8].css',
             chunkFilename: 'css/[name].[contenthash:8].css',
@@ -20,7 +19,11 @@ export function buildPlugins({ paths, isDev }: BuildOptions): webpack.WebpackPlu
     ];
 
     if (isDev) {
+        // @ts-ignore
         plugins.push(new webpack.HotModuleReplacementPlugin());
+        // @ts-ignore
+        plugins.push(new webpack.ProgressPlugin());
+        // @ts-ignore
         plugins.push(new BundleAnalyzerPlugin({
             openAnalyzer: false,
         }));
